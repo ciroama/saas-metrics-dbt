@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: billing
+    description: "Raw data from the billing system (simulated with seeds)."
+    schema: main
+    tables:
+      - name: raw_customers
+        description: "One row per customer, as exported by the billing system."
+      - name: raw_plans
+        description: "One row per subscription plan."
+      - name: raw_subscriptions
+        description: "One row per contract period. May contain duplicates and inconsistent casing."

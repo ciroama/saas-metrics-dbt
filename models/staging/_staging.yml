@@ -1,0 +1,54 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "One row per customer, with clean ids."
+    columns:
+      - name: customer_id
+        description: "Primary key of the customer."
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_plans
+    description: "One row per subscription plan, with its monthly price."
+    columns:
+      - name: plan_id
+        description: "Primary key of the plan."
+        data_tests:
+          - unique
+          - not_null
+      - name: monthly_price
+        description: "Price per month, in euro."
+        data_tests:
+          - not_null
+
+  - name: stg_subscriptions
+    description: "One row per contract period, cleaned and deduplicated."
+    columns:
+      - name: subscription_id
+        description: "Primary key of the contract period."
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "The customer who holds the subscription."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: plan_id
+        description: "The plan of the subscription."
+        data_tests:
+          - accepted_values:
+              values: ['basic', 'pro', 'enterprise']
+          - relationships:
+              to: ref('stg_plans')
+              field: plan_id
+      - name: start_date
+        description: "First day of the contract period."
+        data_tests:
+          - not_null
+      - name: end_date
+        description: "Last day of the contract period. NULL means the subscription is still active."
