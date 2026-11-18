@@ -2,6 +2,8 @@
 
 A small dbt project that turns raw subscription data from a (simulated) billing system into a monthly **MRR** mart, broken down into new, expansion, contraction and churn.
 
+> **Note:** this is a personal learning experiment. The customers, plans and subscriptions are made up, and the project is not used in production.
+
 ## Why I built it
 
 I work daily with SQL, data quality and KPI definitions in an enterprise BI environment. I built this project to learn dbt hands-on and to practise the core metrics of a B2B SaaS business.
