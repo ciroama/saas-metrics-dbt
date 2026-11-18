@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: int_mrr_by_customer_month
+    description: >
+      One row per customer per month, with the MRR the customer paid that month.
+      Months without an active subscription have MRR = 0, so churn can be detected.
+    columns:
+      - name: month_start
+        description: "First day of the month."
+        data_tests:
+          - not_null
+      - name: customer_id
+        description: "The customer."
+        data_tests:
+          - not_null
+      - name: mrr
+        description: "Sum of monthly prices of the subscriptions active on the first day of the month."
+        data_tests:
+          - not_null

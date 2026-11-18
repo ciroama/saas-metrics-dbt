@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: fct_mrr_monthly
+    description: >
+      One row per month. Total MRR and how it moved compared with the previous month:
+      new, expansion, contraction and churn. Official source for Finance reporting.
+    columns:
+      - name: month_start
+        description: "First day of the month."
+        data_tests:
+          - unique
+          - not_null
+      - name: mrr
+        description: "Monthly Recurring Revenue: sum of monthly prices of all active subscriptions."
+        data_tests:
+          - not_null
+      - name: new_mrr
+        description: "MRR from customers who paid 0 the month before."
+      - name: expansion_mrr
+        description: "MRR gained from existing customers who now pay more (upgrades)."
+      - name: contraction_mrr
+        description: "MRR lost from existing customers who now pay less but stay (downgrades). Negative."
+      - name: churned_mrr
+        description: "MRR lost from customers who stopped paying. Negative."
+      - name: active_customers
+        description: "Number of customers with MRR above 0."
+
+  - name: dim_customers
+    description: "One row per customer, with descriptive attributes for filtering and grouping."
+    columns:
+      - name: customer_id
+        description: "Primary key of the customer."
+        data_tests:
+          - unique
+          - not_null
+      - name: first_subscription_date
+        description: "Start date of the customer's first subscription."
+      - name: is_active
+        description: "True if the customer has a subscription with no end date."
