@@ -1,0 +1,27 @@
+name: saas_metrics
+version: "1.0.0"
+config-version: 2
+
+# Which connection to use (defined in profiles.yml)
+profile: saas_metrics
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+
+# Folders created by dbt, removed by `dbt clean`
+clean-targets: ["target", "dbt_packages"]
+
+# The months covered by the MRR model (end is excluded)
+vars:
+  start_month: "2026-01-01"
+  end_month: "2026-05-01"
+
+models:
+  saas_metrics:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table

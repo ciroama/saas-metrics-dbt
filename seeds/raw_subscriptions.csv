@@ -1,0 +1,7 @@
+SubID,CustomerID,Plan,StartDate,EndDate
+s1,C1,Basic,2026-01-01,2026-02-28
+s2,C1,PRO,2026-03-01,
+s3,c2,Pro,2026-01-01,2026-03-31
+s4,C3,Enterprise,2026-02-01,2026-03-31
+s5,C3,pro,2026-04-01,
+s5,C3,pro,2026-04-01,

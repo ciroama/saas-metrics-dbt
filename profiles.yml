@@ -1,0 +1,10 @@
+# Connection to the database.
+# DuckDB is a local file, so there are no passwords here.
+# In a company this file lives outside the project (~/.dbt/) and never goes to GitHub.
+saas_metrics:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: saas_metrics.duckdb
+      threads: 1
