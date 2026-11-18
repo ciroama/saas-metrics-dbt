@@ -36,16 +36,19 @@ models:
         data_tests:
           - not_null
           - relationships:
-              to: ref('stg_customers')
-              field: customer_id
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
       - name: plan_id
         description: "The plan of the subscription."
         data_tests:
           - accepted_values:
-              values: ['basic', 'pro', 'enterprise']
+              arguments:
+                values: ['basic', 'pro', 'enterprise']
           - relationships:
-              to: ref('stg_plans')
-              field: plan_id
+              arguments:
+                to: ref('stg_plans')
+                field: plan_id
       - name: start_date
         description: "First day of the contract period."
         data_tests:
